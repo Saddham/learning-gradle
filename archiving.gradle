@@ -1,0 +1,16 @@
+apply plugin: "base"
+
+task copyDocs(type: Copy) {
+    from "src/main/markdown"
+    into "$buildDir/markdown"
+    include "**/*.md"
+    includeEmptyDirs = false
+}
+
+task createZip(type: Zip) {
+    from "$buildDir/markdown"
+    //archiveFileName = "markdown.zip"
+    //destinationDirectory = file("$buildDir/dist")
+    dependsOn copyDocs
+
+}
